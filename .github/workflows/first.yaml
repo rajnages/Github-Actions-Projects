@@ -1,6 +1,6 @@
 name: First Workflow
 
-on: [push]
+on: push
 
 jobs:
   run-shell-commands:
@@ -14,19 +14,21 @@ jobs:
           node -v
           npm -v
   
-  #parallel jobs
+  # Parallel Jobs
   parallel-jobs:
-    runs-on: macos:latest
+    runs-on: macos-latest
     steps:
-      - name: View SW Version
+      - name: View macOS Version
         run: sw_vers 
 
-  #Dependent Jobs
-  Dependent-Jobs:
-    runs-on: windows:latest
+  # Dependent Jobs
+  dependent-jobs:
+    runs-on: windows-latest
     needs: run-shell-commands
     steps:
-      - name: echo a string
+      - name: Echo a String
         run: Write-Output "Windows String"
+        
       - name: Error Step
         run: doesnotexist
+        continue-on-error: true
