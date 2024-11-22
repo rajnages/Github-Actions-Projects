@@ -1,6 +1,8 @@
 name: Second WorkFlow
 
-on: push
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   echo-data:
