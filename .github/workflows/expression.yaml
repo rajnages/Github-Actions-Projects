@@ -1,0 +1,32 @@
+name: Expression Example Workflow
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  BUILD_ENV: "production"
+
+jobs:
+  conditional-steps:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Display if a build is needed based on branch name
+      - name: Check if Build is Required
+        if: ${{ startsWith(github.ref, 'refs/heads/main') }}
+        run: echo "Build is required for the main branch."
+
+      # Step 2: Use Expressions to Print Dynamic Values
+      - name: Dynamic Environment Selection
+        run: |
+          if [ "${{ env.BUILD_ENV }}" == "production" ]; then
+            echo "Deploying to the Production Environment"
+          else
+            echo "Deploying to the Development Environment"
+          fi
+
+      # Step 3: Dynamic Job Name Based on Inputs
+      - name: Show Actor and Input (Dynamic Values)
+        run: |
+          echo "Workflow triggered by ${{ github.actor }}"
+          echo "Debug Mode: ${{ inputs.debug || 'false' }}"
