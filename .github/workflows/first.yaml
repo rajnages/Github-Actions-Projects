@@ -1,13 +1,13 @@
-name: First WorkFlow
+name: First Workflow
 
-on: [push]
+on: push
 
 jobs:
   run-shell-commands:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
-      - name: first step
-        run: echo "This is first step"
+      - name: First Step
+        run: echo "This is the first step"
 
       - name: Multiple Commands
         run: |
