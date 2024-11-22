@@ -1,8 +1,13 @@
 name: Second WorkFlow
+run-name: My WorkFlow | DEBUG - ${{ inputs.debug }}
 
 on:
   push:
-  workflow_dispatch: #manually release runner
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
 
 jobs:
   echo-data:
